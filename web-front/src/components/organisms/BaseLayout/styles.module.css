@@ -1,0 +1,18 @@
+.container {
+  margin-bottom: 80px;
+}
+
+.contents {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.titleBox {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.titleBox > h2 {
+  font-size: 36px;
+  color: #fff;
+}
