@@ -1,5 +1,13 @@
 # nextjs-qiita-copy-app
 
+## 目的
+
+- スキーマ駆動開発(Open API)
+- StoryBook
+- Jest
+- CI (GitHubActions)
+  これらの習得
+
 ## 技術構成
 
 ### バックエンド
@@ -80,4 +88,6 @@ docker logs -f [コンテナ ID]
 
 https://www.figma.com/file/svOiqQAQ4RnqRGYmAzrjjY/nextjs-qiita-copy-app?type=design&node-id=0-1&mode=design&t=XgAOXVAYvwBiyAqo-0
 
-### DB 設計書
+### テーブル定義所
+
+https://docs.google.com/spreadsheets/d/1pluDMB0zbbIkdhUl10LXzOMmR6vLJpL5/edit#gid=668204238
