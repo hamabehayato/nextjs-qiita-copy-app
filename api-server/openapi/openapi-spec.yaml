@@ -1,0 +1,368 @@
+openapi: 3.0.0
+paths:
+  /api/article:
+    post:
+      operationId: ArticleController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateArticleDto'
+      responses:
+        '201':
+          description: Article新規作成完了
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FindArticleResponseDto'
+        '401':
+          description: 認証エラー
+      tags: &ref_0
+        - article
+      security: &ref_1
+        - bearer: []
+    get:
+      operationId: ArticleController_findAll
+      parameters: []
+      responses:
+        '200':
+          description: Articleリスト取得完了
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FindArticleListResponseDto'
+        '401':
+          description: 認証エラー
+      tags: *ref_0
+      security: *ref_1
+  /api/article/{id}:
+    get:
+      operationId: ArticleController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Article取得完了
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FindArticleResponseDto'
+        '401':
+          description: 認証エラー
+      tags: *ref_0
+      security: *ref_1
+    patch:
+      operationId: ArticleController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateArticleDto'
+      responses:
+        '200':
+          description: Article更新完了
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FindArticleResponseDto'
+        '401':
+          description: 認証エラー
+      tags: *ref_0
+      security: *ref_1
+    delete:
+      operationId: ArticleController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Article削除完了
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FindArticleResponseDto'
+        '401':
+          description: 認証エラー
+      tags: *ref_0
+      security: *ref_1
+  /api/auth/sign_in:
+    post:
+      operationId: AuthController_signIn
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignInUserDto'
+      responses:
+        '200':
+          description: ログイン完了
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponseDto'
+        '401':
+          description: 認証エラー
+      tags: &ref_2
+        - auth
+  /api/auth/sign_up:
+    post:
+      operationId: AuthController_signUp
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUpUserDto'
+      responses:
+        '201':
+          description: 会員登録完了
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponseDto'
+        '401':
+          description: 認証エラー
+      tags: *ref_2
+  /api/auth/authentication:
+    post:
+      operationId: AuthController_authentication
+      parameters: []
+      responses:
+        '200':
+          description: 認証チェックOK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponseDto'
+        '401':
+          description: 認証エラー
+      tags: *ref_2
+      security:
+        - bearer: []
+info:
+  title: API description
+  description: ''
+  version: '1.0'
+  contact: {}
+tags: []
+servers:
+  - url: /
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  schemas:
+    CreateArticleDto:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Article4 created
+          minLength: 2
+          maxLength: 50
+        body:
+          type: string
+          example: Article content4 sample created
+      required:
+        - title
+        - body
+    ArticleEntity:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 1
+        userId:
+          type: string
+          example: 1
+        title:
+          type: string
+          example: Article1 sample
+          minLength: 2
+          maxLength: 25
+        body:
+          type: string
+          example: Article body1 sample
+        published_flg:
+          type: boolean
+          example: false
+        published_at:
+          format: date-time
+          type: string
+          example: '2023-10-28T08:38:14.237Z'
+        createdAt:
+          format: date-time
+          type: string
+          example: '2023-10-28T08:38:14.237Z'
+        updatedAt:
+          format: date-time
+          type: string
+          example: '2023-10-28T08:38:14.237Z'
+      required:
+        - id
+        - title
+        - body
+        - userId
+        - createdAt
+        - updatedAt
+    FindArticleResponseDto:
+      type: object
+      properties:
+        article:
+          example:
+            id: 1
+            userId: 1
+            title: Article1 sample
+            body: Article body sample
+            published_flg: true
+            published_at: '2023-10-28T08:38:14.237Z'
+            createdAt: '2023-10-28T08:38:14.237Z'
+            updatedAt: '2023-10-28T08:38:14.237Z'
+          allOf:
+            - $ref: '#/components/schemas/ArticleEntity'
+      required:
+        - article
+    FindArticleListResponseDto:
+      type: object
+      properties:
+        articles:
+          example:
+            - id: 1
+              userId: 1
+              title: Article1 sample
+              body: Article body1 sample
+              published_flg: true
+              published_at: '2023-10-28T08:38:14.237Z'
+              createdAt: '2023-10-28T08:38:14.237Z'
+              updatedAt: '2023-10-28T08:38:14.237Z'
+            - id: 2
+              userId: 1
+              title: Article2 sample
+              body: Article body2 sample
+              published_flg: true
+              published_at: '2023-10-28T08:38:14.237Z'
+              createdAt: '2023-10-28T08:38:14.237Z'
+              updatedAt: '2023-10-28T08:38:14.237Z'
+            - id: 3
+              userId: 1
+              title: Article3 sample
+              body: Article body3 sample
+              published_flg: true
+              published_at: '2023-10-28T08:38:14.237Z'
+              createdAt: '2023-10-28T08:38:14.237Z'
+              updatedAt: '2023-10-28T08:38:14.237Z'
+          type: array
+          items:
+            $ref: '#/components/schemas/ArticleEntity'
+      required:
+        - articles
+    UpdateArticleDto:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Article4 update
+          minLength: 2
+          maxLength: 25
+        body:
+          type: string
+          example: Article body sample update
+      required:
+        - title
+        - content
+    SignInUserDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user1@test.com
+        password:
+          type: string
+          example: password
+      required:
+        - email
+        - password
+    UserEntity:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 1
+        name:
+          type: string
+          example: ユーザー1
+          minLength: 2
+          maxLength: 25
+        email:
+          type: string
+          example: user1@test.com
+          maxLength: 255
+        createdAt:
+          format: date-time
+          type: string
+          example: '2022-10-28T08:38:14.237Z'
+        updatedAt:
+          format: date-time
+          type: string
+          example: '2022-10-28T08:38:14.237Z'
+      required:
+        - id
+        - name
+        - email
+        - createdAt
+        - updatedAt
+    AuthResponseDto:
+      type: object
+      properties:
+        user:
+          example:
+            id: 1
+            name: ユーザー1
+            email: user1@test.com
+            createdAt: '2022-10-28T08:38:14.237Z'
+            updatedAt: '2022-10-28T08:38:14.237Z'
+          allOf:
+            - $ref: '#/components/schemas/UserEntity'
+        accessToken:
+          type: string
+          example: token
+      required:
+        - user
+        - accessToken
+    SignUpUserDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: ユーザー1
+        email:
+          type: string
+          example: user1@test.com
+        password:
+          type: string
+          example: password
+      required:
+        - name
+        - email
+        - password
