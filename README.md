@@ -84,6 +84,10 @@ docker ps
 
 docker logs -f [コンテナ ID]
 
+### API 仕様書確認方法
+
+https://github.com/hamabehayato/nextjs-output-with-api-crud/wiki/API%E4%BB%95%E6%A7%98%E6%9B%B8%E3%81%AE%E7%A2%BA%E8%AA%8D%E6%96%B9%E6%B3%95
+
 ### デザインフレームワーク
 
 https://www.figma.com/file/svOiqQAQ4RnqRGYmAzrjjY/nextjs-qiita-copy-app?type=design&node-id=0-1&mode=design&t=XgAOXVAYvwBiyAqo-0
