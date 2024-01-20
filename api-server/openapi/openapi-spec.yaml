@@ -103,14 +103,14 @@ paths:
       security: *ref_1
   /api/auth/sign_in:
     post:
-      operationId: AuthController_signIn
+      operationId: AuthController_logIn
       parameters: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SignInUserDto'
+              $ref: '#/components/schemas/LogInUserDto'
       responses:
         '200':
           description: ログイン完了
@@ -291,7 +291,7 @@ components:
       required:
         - title
         - content
-    SignInUserDto:
+    LogInUserDto:
       type: object
       properties:
         email:

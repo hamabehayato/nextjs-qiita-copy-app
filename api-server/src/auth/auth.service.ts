@@ -3,7 +3,7 @@ import * as bcryptjs from 'bcryptjs';
 import { AppDataSource } from '../data-source';
 import { User } from './entity/User';
 import { SignUpUserDto } from './dto/sign-up-user.dto';
-import { SignInUserDto } from './dto/sign-in-user.dto';
+import { LogInUserDto } from './dto/sign-in-user.dto';
 import { ResponseUserType } from '../interfaces/User';
 
 export class AuthService {
@@ -12,14 +12,14 @@ export class AuthService {
    *
    * @route POST /api/signin
    */
-  signIn = async (SignInUserDto: SignInUserDto) => {
+  logIn = async (LogInUserDto: LogInUserDto) => {
     const user = await AppDataSource.manager.findOne(User, {
       where: {
-        email: SignInUserDto.email,
+        email: LogInUserDto.email,
       },
     });
 
-    if (!user || !bcryptjs.compare(SignInUserDto.password, user.password)) {
+    if (!user || !bcryptjs.compare(LogInUserDto.password, user.password)) {
       return {
         errorCode: 401,
         errorMessage: 'メールアドレス または パスワードが違います。',
