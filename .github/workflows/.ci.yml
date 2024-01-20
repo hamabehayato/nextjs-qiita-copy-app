@@ -22,17 +22,17 @@ jobs:
         # ライブラリをinstall
       - name: Install dependencies
         run: |
-          cd frontend
+          cd web-front
           npm install
 
       - name: Run lint
         run: |
-          cd frontend
+          cd web-front
           npm run lint
 
       # - name: Run tests
       #   run: |
-      #     cd frontend
+      #     cd web-front
       #     npm test
 
         # build app
