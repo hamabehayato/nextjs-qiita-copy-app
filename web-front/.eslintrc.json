@@ -5,5 +5,9 @@
     "prettier",
     "next/babel",
     "plugin:storybook/recommended"
-  ]
+  ],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
 }
