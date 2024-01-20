@@ -14,7 +14,7 @@ type Props = {
 interface ContextInterface {
   user: UserType | undefined;
   isAuth: boolean;
-  signIn: (user: UserType) => Promise<void>;
+  logIn: (user: UserType) => Promise<void>;
   signOut: () => Promise<void>;
 }
 
@@ -26,14 +26,14 @@ const AuthContext = createContext({} as ContextInterface);
  * @returns
  */
 export const AuthProvider: FC<Props> = ({ children }) => {
-  const { user, isAuth, signIn, signOut } = useAuth();
+  const { user, isAuth, logIn, signOut } = useAuth();
 
   return (
     <AuthContext.Provider
       value={{
         user,
         isAuth,
-        signIn,
+        logIn,
         signOut,
       }}
     >

@@ -11,7 +11,7 @@ import { EventType } from '@/interfaces/Event';
 import { UserType } from '@/interfaces/User';
 
 type Params = {
-  signIn: (user: UserType) => Promise<void>;
+  logIn: (user: UserType) => Promise<void>;
 };
 
 type StatesType = {
@@ -34,7 +34,7 @@ type ActionsType = {
  * @param param0
  * @returns
  */
-export const useSignUpTemplate = ({ signIn }: Params) => {
+export const useSignUpTemplate = ({ logIn }: Params) => {
   /* local state */
   const router = useRouter();
   const [name, setName] = useState<string>('');
@@ -88,7 +88,7 @@ export const useSignUpTemplate = ({ signIn }: Params) => {
       }
     },
     // これらが更新された時のみ、関数を再生成する
-    [name, email, password, passwordConfirm, router, signIn]
+    [name, email, password, passwordConfirm, router, logIn]
   );
 
   const states: StatesType = {

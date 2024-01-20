@@ -5,9 +5,9 @@
  */
 import { useAuthContext } from '@/contexts/AuthContext';
 import { useSignNavigation } from './useNavigation';
-import { NavigationLink } from '@/components/atoms/NavagationLink';
+import { NavigationLink } from '@/components/atoms/NavigationLink';
 import { NAVIGATION_LIST } from '@/constants/navigations';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 /**
  * Navigation
@@ -20,14 +20,14 @@ export const Navigation = () => {
 
   return (
     <div className={styles.header}>
-      <h1 className={styles.title}>Todo List</h1>
+      <h1 className={styles.title}>Article-Manage-App</h1>
       <nav className={styles.nav}>
         <ul className={styles.list}>
-          <NavigationLink label={'Top'} linkPath={NAVIGATION_LIST.TOP} />
-          <NavigationLink label={'Create'} linkPath={NAVIGATION_LIST.CREATE} />
-          <li className={styles.item}>
+          <NavigationLink label={'ユーザー登録'} linkPath={NAVIGATION_LIST.SIGNUP} outline={'outline'} />
+          <NavigationLink label={'ログイン'} linkPath={NAVIGATION_LIST.TOP} />
+          {/* <li className={styles.item}>
             <button onClick={handleSignOut}>Sign Out</button>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </div>

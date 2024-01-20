@@ -1,5 +1,5 @@
 /**
- * useSignInTemplate
+ * useLogInTemplate
  *
  * @package hooks
  */
@@ -22,7 +22,7 @@ type ActionsType = {
 };
 
 /**
- * useSignInTemplate
+ * useLogInTemplate
  * @param param0
  * @returns
  */

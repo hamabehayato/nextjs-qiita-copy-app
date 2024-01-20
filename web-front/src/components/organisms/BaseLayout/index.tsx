@@ -5,14 +5,14 @@
  */
 import { ReactNode } from 'react';
 import { Navigation } from '@/components/molcules/Navigation';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 type Props = {
   children: ReactNode;
   title: string;
 };
 
-export const BaseLayout = ({ children, title }: Props) => {
+export const BaseLayout = ({ children }: Props) => {
   /**
    * BaseLayout
    * @returns {JSX.Element}
@@ -23,12 +23,7 @@ export const BaseLayout = ({ children, title }: Props) => {
       <section>
         <Navigation />
       </section>
-      <div className={styles.contents}>
-        <div className={styles.titleBox}>
-          <h2>{title}</h2>
-        </div>
-        {children}
-      </div>
+      <div className={styles.contents}>{children}</div>
     </div>
   );
 };

@@ -1,17 +1,17 @@
 /**
- * useSignInTemplate
+ * useLogInTemplate
  *
  * @package hooks
  */
 import { useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
-import { signInApi } from '@/apis/authApi';
+import { logInApi } from '@/apis/authApi';
 import { NAVIGATION_LIST } from '@/constants/navigations';
 import { EventType } from '@/interfaces/Event';
 import { UserType } from '@/interfaces/User';
 
 type Params = {
-  signIn: (user: UserType) => Promise<void>;
+  logIn: (user: UserType) => Promise<void>;
 };
 
 type StatesType = {
@@ -22,15 +22,15 @@ type StatesType = {
 type ActionsType = {
   handleChangeEmail: EventType['onChangeInput'];
   handleChangePassword: EventType['onChangeInput'];
-  handleSignIn: EventType['onSubmit'];
+  handleLogIn: EventType['onSubmit'];
 };
 
 /**
- * useSignInTemplate
+ * useLogInTemplate
  * @param param0
  * @returns
  */
-export const useSignInTemplate = ({ signIn }: Params) => {
+export const useLogInTemplate = ({ logIn }: Params) => {
   /* local state */
   const router = useRouter();
   const [email, setEmail] = useState<string>('');
@@ -52,21 +52,21 @@ export const useSignInTemplate = ({ signIn }: Params) => {
   /**
    * ログイン処理
    */
-  const handleSignIn: EventType['onSubmit'] = useCallback(
+  const handleLogIn: EventType['onSubmit'] = useCallback(
     async (event) => {
       event.preventDefault();
       if (email === '' || password === '') return;
 
-      const res = await signInApi(email, password);
+      const res = await logInApi(email, password);
 
       if (res?.data?.user) {
-        signIn(res.data.user);
+        logIn(res.data.user);
         localStorage.setItem('access_token', res.data.accessToken);
         router.push(NAVIGATION_LIST.TOP);
       }
     },
     // これらが更新された時のみ、関数を再生成する
-    [email, password, router, signIn]
+    [email, password, router, logIn]
   );
 
   const states: StatesType = {
@@ -76,7 +76,7 @@ export const useSignInTemplate = ({ signIn }: Params) => {
   const actions: ActionsType = {
     handleChangeEmail,
     handleChangePassword,
-    handleSignIn,
+    handleLogIn,
   };
 
   return [states, actions] as const;

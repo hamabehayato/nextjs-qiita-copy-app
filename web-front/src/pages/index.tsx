@@ -1,15 +1,15 @@
 /**
- * SignUpPage
+ * LogInPage
  *
  * @package pages
  */
 import type { NextPage } from 'next';
-import { SignInTemplate } from '@/components/templates/SignInTemplate';
+import { LogInTemplate } from '@/components/templates/LogInTemplate';
 
 /**
  * SignUpPage
  * @constructor
  */
-const SignInPage: NextPage = () => <SignInTemplate />;
+const LogInPage: NextPage = () => <LogInTemplate />;
 
-export default SignInPage;
+export default LogInPage;

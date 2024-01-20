@@ -21,7 +21,7 @@ export const useAuth = () => {
   /**
    * グローバルの認証状態をログイン済にする (ログイン)
    */
-  const signIn = useCallback(async (user: UserType) => {
+  const logIn = useCallback(async (user: UserType) => {
     setUser(user);
     setIsAuth(true);
   }, []);
@@ -67,7 +67,7 @@ export const useAuth = () => {
   return {
     user,
     isAuth,
-    signIn,
+    logIn,
     signOut,
   };
 };

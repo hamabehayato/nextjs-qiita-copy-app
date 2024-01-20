@@ -13,11 +13,11 @@ import { useSignUpTemplate } from './useSignUpTemplate';
 import styles from './style.module.css';
 
 export const SignUpTemplate: FC = () => {
-  const { signIn } = useAuthContext();
+  const { logIn } = useAuthContext();
   const [
     { name, email, password, passwordConfirm },
     { handleChangeName, handleChangeEmail, handleChangePassword, handleChangePasswordConfirm, handleSignUp },
-  ] = useSignUpTemplate({ signIn });
+  ] = useSignUpTemplate({ logIn });
 
   return (
     <div className={styles.container}>
