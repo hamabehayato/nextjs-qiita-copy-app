@@ -5,13 +5,13 @@
  */
 
 type NavigationsType = {
-  SIGNIN: string;
-  SIGNUP: string;
-  TOP: string;
-  CREATE: string;
-  DETAIL: string;
-  EDIT: string;
-};
+  SIGNIN: string
+  SIGNUP: string
+  TOP: string
+  CREATE: string
+  DETAIL: string
+  EDIT: string
+}
 
 /**
  * リンク先一覧
@@ -25,7 +25,7 @@ export const NAVIGATION_LIST: NavigationsType = {
   CREATE: `/todo/create`,
   DETAIL: `/todo/detail/:id`,
   EDIT: `/todo/edit/:id`,
-};
+}
 
 /**
  * パス一覧
@@ -39,4 +39,4 @@ export const NAVIGATION_PATH: NavigationsType = {
   CREATE: `/todo/create/`,
   DETAIL: `/todo/detail/`,
   EDIT: `/todo/edit/`,
-};
+}

@@ -15,7 +15,12 @@ type Props = JSX.IntrinsicElements['textarea']
  * @constructor
  */
 // FC は、React関数コンポーネントを定義するための型
-export const TextArea: FC<Props> = ({ disabled = false, value, placeholder, onChange }) => {
+export const TextArea: FC<Props> = ({
+  disabled = false,
+  value,
+  placeholder,
+  onChange,
+}) => {
   return (
     <div className={styles.container}>
       <textarea

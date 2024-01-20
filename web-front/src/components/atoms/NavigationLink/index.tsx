@@ -3,15 +3,15 @@
  *
  * @package components
  */
-import { FC } from 'react';
-import Link from 'next/link';
-import styles from './styles.module.scss';
+import { FC } from 'react'
+import Link from 'next/link'
+import styles from './styles.module.scss'
 
 type Props = {
-  label: string;
-  linkPath: string;
-  outline?: string;
-};
+  label: string
+  linkPath: string
+  outline?: string
+}
 
 /**
  * NavigationLink
@@ -23,5 +23,5 @@ export const NavigationLink: FC<Props> = ({ label, linkPath, outline }) => {
     <li className={`${styles.item} ${outline ? styles.outline : ''}`}>
       <Link href={linkPath}>{label}</Link>
     </li>
-  );
-};
+  )
+}

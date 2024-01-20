@@ -3,14 +3,14 @@
  *
  * @package components
  */
-import { ReactNode } from 'react';
-import { Navigation } from '@/components/molcules/Navigation';
-import styles from './styles.module.scss';
+import { ReactNode } from 'react'
+import { Navigation } from '@/components/molcules/Navigation'
+import styles from './styles.module.scss'
 
 type Props = {
-  children: ReactNode;
-  title: string;
-};
+  children: ReactNode
+  title: string
+}
 
 export const BaseLayout = ({ children }: Props) => {
   /**
@@ -25,5 +25,5 @@ export const BaseLayout = ({ children }: Props) => {
       </section>
       <div className={styles.contents}>{children}</div>
     </div>
-  );
-};
+  )
+}

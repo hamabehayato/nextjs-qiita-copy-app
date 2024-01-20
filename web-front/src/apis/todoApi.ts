@@ -1,6 +1,10 @@
-import { AxiosResponse } from 'axios';
-import globalAxios, { isAxiosError, IErrorResponse, ResponseType } from '@/apis/config';
-import { TodoType } from '@/interfaces/Todo';
+import { AxiosResponse } from 'axios'
+import globalAxios, {
+  isAxiosError,
+  IErrorResponse,
+  ResponseType,
+} from '@/apis/config'
+import { TodoType } from '@/interfaces/Todo'
 
 /**
  * Todoリスト取得のAPI接続処理
@@ -8,14 +12,15 @@ import { TodoType } from '@/interfaces/Todo';
  */
 export const fetchTodoListApi = async () => {
   try {
-    const { data }: AxiosResponse<Array<TodoType>> = await globalAxios.get('/todos');
-    return data;
+    const { data }: AxiosResponse<Array<TodoType>> =
+      await globalAxios.get('/todos')
+    return data
   } catch (err) {
     if (isAxiosError(err)) {
-      return err.code;
+      return err.code
     }
   }
-};
+}
 
 /**
  * Todo詳細取得のAPI接続処理
@@ -23,14 +28,16 @@ export const fetchTodoListApi = async () => {
  */
 export const fetchTodoApi = async (id: number) => {
   try {
-    const { data }: AxiosResponse<Array<TodoType>> = await globalAxios.get(`/todo/${id}`);
-    return data;
+    const { data }: AxiosResponse<Array<TodoType>> = await globalAxios.get(
+      `/todo/${id}`,
+    )
+    return data
   } catch (err) {
     if (isAxiosError(err)) {
-      return err.code;
+      return err.code
     }
   }
-};
+}
 
 /**
  * Todo新規登録のAPI接続処理
@@ -43,14 +50,14 @@ export const createTodoApi = async (title: string, content: string) => {
     const { data }: AxiosResponse<TodoType> = await globalAxios.post('/todo', {
       title,
       content,
-    });
-    return data;
+    })
+    return data
   } catch (err) {
     if (isAxiosError(err)) {
-      return err.code;
+      return err.code
     }
   }
-};
+}
 
 /**
  * Todo更新のAPI接続処理
@@ -58,19 +65,26 @@ export const createTodoApi = async (title: string, content: string) => {
  * @param {string} title
  * @param {string} content
  */
-export const updateTodoApi = async (id: number, title: string, content: string) => {
+export const updateTodoApi = async (
+  id: number,
+  title: string,
+  content: string,
+) => {
   try {
-    const { data }: AxiosResponse<TodoType> = await globalAxios.put(`/todo/${id}`, {
-      title: title,
-      content: content,
-    });
-    return data;
+    const { data }: AxiosResponse<TodoType> = await globalAxios.put(
+      `/todo/${id}`,
+      {
+        title: title,
+        content: content,
+      },
+    )
+    return data
   } catch (err) {
     if (isAxiosError(err)) {
-      return err.code;
+      return err.code
     }
   }
-};
+}
 
 /**
  * Todo削除のAPI接続処理
@@ -78,22 +92,24 @@ export const updateTodoApi = async (id: number, title: string, content: string) 
  */
 export const deleteTodoApi = async (id: number) => {
   try {
-    const { data }: AxiosResponse<TodoType> = await globalAxios.delete(`/todo/${id}`);
+    const { data }: AxiosResponse<TodoType> = await globalAxios.delete(
+      `/todo/${id}`,
+    )
     const res: ResponseType<TodoType> = {
       code: 200,
       data,
-    };
-    return res;
+    }
+    return res
   } catch (err) {
     const res: ResponseType = {
       code: 500,
       message: '',
-    };
-    if (isAxiosError(err)) {
-      const axiosError = err as IErrorResponse;
-      res.code = axiosError.response.status;
-      res.message = axiosError.response.data.message;
     }
-    return res;
+    if (isAxiosError(err)) {
+      const axiosError = err as IErrorResponse
+      res.code = axiosError.response.status
+      res.message = axiosError.response.data.message
+    }
+    return res
   }
-};
+}

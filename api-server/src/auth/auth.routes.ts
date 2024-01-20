@@ -7,14 +7,14 @@
  * @route POST /api/authentication
  */
 import { Router } from 'express';
-import { signUp, signIn, authentication } from './auth.controller';
+import { signUp, login, authentication } from './auth.controller';
 import { authGuard } from '../lib/guards/jwt-auth.guard';
 
 const router = Router();
 
 // ルート定義
 router.post('/signup', signUp);
-router.post('/signin', signIn);
+router.post('/signin', login);
 router.post('/authentication', authGuard, authentication);
 
 export default router;

@@ -8,15 +8,15 @@
  * UserType
  */
 export interface UserType {
-  id: number;
-  name: string;
-  email: string;
+  id: number
+  name: string
+  email: string
 }
 
 /**
  * AuthResponseType
  */
 export interface AuthResponseType {
-  user: UserType;
-  accessToken: string;
+  user: UserType
+  accessToken: string
 }
