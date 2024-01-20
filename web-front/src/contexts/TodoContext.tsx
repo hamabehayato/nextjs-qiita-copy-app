@@ -3,25 +3,25 @@
  *
  * @package contexts
  */
-import { useContext, createContext, ReactNode } from 'react';
-import { useTodo } from '@/hooks/useTodo';
-import { TodoType } from '@/interfaces/Todo';
+import { useContext, createContext, ReactNode } from 'react'
+import { useTodo } from '@/hooks/useTodo'
+import { TodoType } from '@/interfaces/Todo'
 
 type Props = {
-  children: ReactNode;
-};
+  children: ReactNode
+}
 
 interface ContextInterface {
-  createTodo: (title: string, content: string) => void;
-  originTodoList: Array<TodoType>;
-  updateTodo: (id: number, title: string, content: string) => void;
-  deleteTodo: (id: number) => void;
+  createTodo: (title: string, content: string) => void
+  originTodoList: Array<TodoType>
+  updateTodo: (id: number, title: string, content: string) => void
+  deleteTodo: (id: number) => void
 }
 
 /**
  * TodoContext
  */
-const TodoContext = createContext({} as ContextInterface);
+const TodoContext = createContext({} as ContextInterface)
 
 /**
  * TodoProvider
@@ -29,7 +29,7 @@ const TodoContext = createContext({} as ContextInterface);
  * @constructor
  */
 export const TodoProvider = ({ children }: Props) => {
-  const { createTodo, originTodoList, updateTodo, deleteTodo } = useTodo();
+  const { createTodo, originTodoList, updateTodo, deleteTodo } = useTodo()
 
   return (
     <TodoContext.Provider
@@ -42,7 +42,7 @@ export const TodoProvider = ({ children }: Props) => {
     >
       {children}
     </TodoContext.Provider>
-  );
-};
+  )
+}
 
-export const useTodoContext = () => useContext(TodoContext);
+export const useTodoContext = () => useContext(TodoContext)

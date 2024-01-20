@@ -29,9 +29,17 @@ export const TodoEditTemplate = () => {
   return (
     <BaseLayout title={'Edit Todo'}>
       <form onSubmit={handleUpdateTodo}>
-        <InputForm value={inputTitle} placeholder={'Title'} onChange={handleChangeTitle} />
+        <InputForm
+          value={inputTitle}
+          placeholder={'Title'}
+          onChange={handleChangeTitle}
+        />
 
-        <TextArea value={inputContent} placeholder={'Content'} onChange={handleChangeContent} />
+        <TextArea
+          value={inputContent}
+          placeholder={'Content'}
+          onChange={handleChangeContent}
+        />
 
         <CommonButton title={'Edit Todo'} type={'submit'} />
       </form>

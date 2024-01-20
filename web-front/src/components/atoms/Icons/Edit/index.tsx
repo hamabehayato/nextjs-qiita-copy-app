@@ -3,7 +3,7 @@
  *
  * @package components
  */
-import styles from './styles.module.css';
+import styles from './styles.module.css'
 
 /**
  * TrashIcon
@@ -30,5 +30,5 @@ export const EditIcon = () => {
         ></path>
       </g>
     </svg>
-  );
-};
+  )
+}

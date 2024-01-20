@@ -3,7 +3,7 @@
  *
  * @package components
  */
-import styles from './styles.module.css';
+import styles from './styles.module.css'
 
 /**
  * TrashIcon
@@ -33,5 +33,5 @@ export const DetailIcon = () => {
         <rect x="146.919" y="344.556" width="130.9" height="32.725"></rect>
       </g>
     </svg>
-  );
-};
+  )
+}

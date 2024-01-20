@@ -1,16 +1,16 @@
 /**
- * useSignInTemplate
+ * useLoginTemplate
  *
  * @package hooks
  */
-import { useCallback } from 'react';
-import { useRouter } from 'next/router';
-import { NAVIGATION_LIST } from '@/constants/navigations';
-import { EventType } from '@/interfaces/Event';
+import { useCallback } from 'react'
+import { useRouter } from 'next/router'
+import { NAVIGATION_LIST } from '@/constants/navigations'
+import { EventType } from '@/interfaces/Event'
 
 type Params = {
-  signOut: () => Promise<void>;
-};
+  signOut: () => Promise<void>
+}
 
 // type StatesType = {
 //   email: string;
@@ -18,17 +18,17 @@ type Params = {
 // };
 
 type ActionsType = {
-  handleSignOut: EventType['onSubmitButton'];
-};
+  handleSignOut: EventType['onSubmitButton']
+}
 
 /**
- * useSignInTemplate
+ * useLoginTemplate
  * @param param0
  * @returns
  */
 export const useSignNavigation = ({ signOut }: Params) => {
   /* local state */
-  const router = useRouter();
+  const router = useRouter()
 
   /* actions */
 
@@ -37,14 +37,14 @@ export const useSignNavigation = ({ signOut }: Params) => {
    */
   const handleSignOut: EventType['onSubmitButton'] = useCallback(
     async (event) => {
-      event.preventDefault();
-      localStorage.removeItem('access_token');
-      signOut();
-      router.push(NAVIGATION_LIST.SIGNIN);
+      event.preventDefault()
+      localStorage.removeItem('access_token')
+      signOut()
+      router.push(NAVIGATION_LIST.SIGNIN)
     },
     // これらが更新された時のみ、関数を再生成する
-    [signOut, router]
-  );
+    [signOut, router],
+  )
 
   // const states: StatesType = {
   //   email,
@@ -52,7 +52,7 @@ export const useSignNavigation = ({ signOut }: Params) => {
   // };
   const actions: ActionsType = {
     handleSignOut,
-  };
+  }
 
-  return [actions] as const;
-};
+  return [actions] as const
+}

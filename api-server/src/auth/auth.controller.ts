@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { SignUpUserDto } from './dto/sign-up-user.dto';
-import { SignInUserDto } from './dto/sign-in-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 
 // AuthServiceのインスタンスを1度だけ生成
 const authService = new AuthService();
@@ -11,11 +11,11 @@ const authService = new AuthService();
  *
  * @route POST /api/signin
  */
-export const signIn = async (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body as SignInUserDto;
+    const { email, password } = req.body as LoginUserDto;
 
-    const resUser = await authService.signIn({
+    const resUser = await authService.login({
       email: email,
       password: password,
     });

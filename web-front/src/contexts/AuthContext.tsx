@@ -3,22 +3,22 @@
  *
  * @package contexts
  */
-import { FC, ReactNode, useContext, createContext } from 'react';
-import { UserType } from '@/interfaces/User';
-import { useAuth } from '@/hooks/useAuth';
+import { FC, ReactNode, useContext, createContext } from 'react'
+import { UserType } from '@/interfaces/User'
+import { useAuth } from '@/hooks/useAuth'
 
 type Props = {
-  children: ReactNode;
-};
-
-interface ContextInterface {
-  user: UserType | undefined;
-  isAuth: boolean;
-  signIn: (user: UserType) => Promise<void>;
-  signOut: () => Promise<void>;
+  children: ReactNode
 }
 
-const AuthContext = createContext({} as ContextInterface);
+interface ContextInterface {
+  user: UserType | undefined
+  isAuth: boolean
+  logIn: (user: UserType) => Promise<void>
+  signOut: () => Promise<void>
+}
+
+const AuthContext = createContext({} as ContextInterface)
 
 /**
  * AuthProvider
@@ -26,20 +26,20 @@ const AuthContext = createContext({} as ContextInterface);
  * @returns
  */
 export const AuthProvider: FC<Props> = ({ children }) => {
-  const { user, isAuth, signIn, signOut } = useAuth();
+  const { user, isAuth, logIn, signOut } = useAuth()
 
   return (
     <AuthContext.Provider
       value={{
         user,
         isAuth,
-        signIn,
+        logIn,
         signOut,
       }}
     >
       {children}
     </AuthContext.Provider>
-  );
-};
+  )
+}
 
-export const useAuthContext = () => useContext(AuthContext);
+export const useAuthContext = () => useContext(AuthContext)

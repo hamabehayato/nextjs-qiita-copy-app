@@ -1,59 +1,44 @@
 /**
- * useSignUpTemplate
+ * useLoginTemplate
  *
  * @package hooks
  */
 import { useState, useCallback } from 'react'
 import { useRouter } from 'next/router'
-import { signUpApi } from '@/apis/authApi'
+import { logInApi } from '@/apis/authApi'
 import { NAVIGATION_LIST } from '@/constants/navigations'
 import { EventType } from '@/interfaces/Event'
 import { UserType } from '@/interfaces/User'
 
 type Params = {
-  login: (user: UserType) => Promise<void>
+  logIn: (user: UserType) => Promise<void>
 }
 
 type StatesType = {
-  name: string
   email: string
   password: string
-  passwordConfirm: string
 }
 
 type ActionsType = {
-  handleChangeName: EventType['onChangeInput']
   handleChangeEmail: EventType['onChangeInput']
   handleChangePassword: EventType['onChangeInput']
-  handleChangePasswordConfirm: EventType['onChangeInput']
-  handleSignUp: EventType['onSubmit']
+  handleLogin: EventType['onSubmit']
 }
 
 /**
- * useSignUpTemplate
+ * useLoginTemplate
  * @param param0
  * @returns
  */
-export const useSignUpTemplate = ({ login }: Params) => {
+export const useLoginTemplate = ({ logIn }: Params) => {
   /* local state */
   const router = useRouter()
-  const [name, setName] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const [passwordConfirm, setPasswordConfirm] = useState<string>('')
 
   /* actions */
   /**
    * nameの更新処理
-   * @param {*} event
-   */
-  const handleChangeName: EventType['onChangeInput'] = useCallback(
-    (event) => setName(event.target.value),
-    [],
-  )
-
-  /**
-   * email の更新処理
    * @param {*} event
    */
   const handleChangeEmail: EventType['onChangeInput'] = useCallback(
@@ -62,8 +47,8 @@ export const useSignUpTemplate = ({ login }: Params) => {
   )
 
   /**
-   * password の更新処理
-   * @param {*} e
+   * email の更新処理
+   * @param {*} event
    */
   const handleChangePassword: EventType['onChangeInput'] = useCallback(
     (event) => setPassword(event.target.value),
@@ -71,47 +56,33 @@ export const useSignUpTemplate = ({ login }: Params) => {
   )
 
   /**
-   * password の更新処理
-   * @param {*} e
+   * ログイン処理
    */
-  const handleChangePasswordConfirm: EventType['onChangeInput'] = useCallback(
-    (event) => setPasswordConfirm(event.target.value),
-    [],
-  )
-
-  /**
-   * 会員登録処理
-   */
-  const handleSignUp: EventType['onSubmit'] = useCallback(
+  const handleLogin: EventType['onSubmit'] = useCallback(
     async (event) => {
       event.preventDefault()
+      if (email === '' || password === '') return
 
-      if (password !== passwordConfirm) return
-      if (name === '' || email === '' || password === '') return
-
-      const res = await signUpApi(name, email, password)
+      const res = await logInApi(email, password)
 
       if (res?.data?.user) {
+        logIn(res.data.user)
         localStorage.setItem('access_token', res.data.accessToken)
         router.push(NAVIGATION_LIST.TOP)
       }
     },
     // これらが更新された時のみ、関数を再生成する
-    [name, email, password, passwordConfirm, router],
+    [email, password, router, logIn],
   )
 
   const states: StatesType = {
-    name,
     email,
     password,
-    passwordConfirm,
   }
   const actions: ActionsType = {
-    handleChangeName,
     handleChangeEmail,
     handleChangePassword,
-    handleChangePasswordConfirm,
-    handleSignUp,
+    handleLogin,
   }
 
   return [states, actions] as const
