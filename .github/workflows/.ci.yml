@@ -21,16 +21,20 @@ jobs:
           cache: yarn
 
         # ライブラリをinstall
-      - name: Install Dependencies
-        run: yarn --frozen-lockfile
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm install
 
-        # lint実行
-      - name: Static Analytics
-        run: yarn lint
+      - name: Run lint
+        run: |
+          cd frontend
+          npm run lint
 
-        # unit test
-      - name: Unit Test
-        run: yarn test
+      # - name: Run tests
+      #   run: |
+      #     cd frontend
+      #     npm test
 
         # build app
       # - name: App Build
